@@ -5,7 +5,7 @@
 		<groupId>org.vebqa.vebtal</groupId>
 		<artifactId>vebtal-parent</artifactId>
 		<version>1.0.0</version>
-		<relativePath>../vebtal-parent-pom.xml</relativePath>
+		<relativePath>vebtal-parent-pom.xml</relativePath>
 	</parent>
 	<artifactId>vebtal-api</artifactId>
 	<version>0.9</version>
