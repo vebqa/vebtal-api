@@ -10,6 +10,8 @@
 	<artifactId>vebtal-api</artifactId>
 	<version>0.9</version>
 
+	<name>API for vebtal system</name>
+	
 	<licenses>
 		<license>
 			<name>Apache License, Version 2.0</name>
@@ -17,6 +19,10 @@
 			<distribution>repo</distribution>
 		</license>
 	</licenses>
+	
+		<scm>
+		<url>https://github.com/vebqa/vebtal-api</url>
+	</scm>
 	
 	<dependencies>
 		<dependency>
