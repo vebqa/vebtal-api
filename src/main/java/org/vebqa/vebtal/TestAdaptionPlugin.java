@@ -12,4 +12,6 @@ public interface TestAdaptionPlugin {
 	Tab startup();
 	
 	boolean shutdown();
+	
+	Class<?> getImplementation();
 }

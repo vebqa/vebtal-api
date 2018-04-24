@@ -30,4 +30,8 @@ public abstract class AbstractTestAdaptionPlugin implements TestAdaptionPlugin {
 	public boolean shutdown() {
 		throw new UnsupportedOperationException("shutdown not yet implemented.");
 	}
+	
+	public Class<?> getImplementation() {
+		throw new UnsupportedOperationException("not yet implemented.");
+	}
 }
