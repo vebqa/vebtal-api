@@ -34,4 +34,8 @@ public abstract class AbstractTestAdaptionPlugin implements TestAdaptionPlugin {
 	public Class<?> getImplementation() {
 		throw new UnsupportedOperationException("not yet implemented.");
 	}
+	
+	public String getAdaptionID() {
+		throw new UnsupportedOperationException("not yet imlemented.");
+	}
 }

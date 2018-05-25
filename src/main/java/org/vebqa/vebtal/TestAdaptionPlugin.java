@@ -14,4 +14,6 @@ public interface TestAdaptionPlugin {
 	boolean shutdown();
 	
 	Class<?> getImplementation();
+	
+	String getAdaptionID();
 }
