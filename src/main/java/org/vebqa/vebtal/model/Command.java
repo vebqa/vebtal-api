@@ -1,7 +1,7 @@
 package org.vebqa.vebtal.model;
 
 public class Command {
-
+	
 	private String cmd;
 	private String target;
 	private String value;
