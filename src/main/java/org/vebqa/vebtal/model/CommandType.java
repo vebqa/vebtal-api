@@ -9,5 +9,6 @@ package org.vebqa.vebtal.model;
 public enum CommandType {
 	ACTION,
 	ACCESSOR,
-	ASSERTION
+	ASSERTION,
+	UTILLITY
 }
