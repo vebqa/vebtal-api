@@ -2,12 +2,11 @@ package org.vebqa.vebtal;
 
 import org.vebqa.vebtal.model.CommandResult;
 
-import javafx.application.Platform;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.Button;
+import javafx.scene.control.ContextMenu;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -21,19 +20,6 @@ import javafx.scene.layout.HBox;
 public abstract class AbstractTestAdaptionPlugin implements TestAdaptionPlugin {
 	
 	protected TestAdaptionType adaptionType;
-
-	/**
-	 * commands to execute
-	 */
-	protected static final TableView<CommandResult> commandList = new TableView<>();
-	
-	/**
-	 * results after execution
-	 */
-	protected static final ObservableList<CommandResult> clData = FXCollections.observableArrayList();	
-	
-	/** Clear Button **/
-	private static final Button btnClear = new Button();
 	
 	public AbstractTestAdaptionPlugin() {
 		throw new UnsupportedOperationException("Use constructor without setting the adaption type is forbidden.");
@@ -68,38 +54,25 @@ public abstract class AbstractTestAdaptionPlugin implements TestAdaptionPlugin {
 	}
 	
 	public static void setDisableUserActions(boolean aState) {
-		Platform.runLater(() -> btnClear.setDisable(aState));
+		// Platform.runLater(() -> btnClear.setDisable(aState));
 	}
 	
-	protected Tab createTab(String aTabIdentifier) {
+	protected Tab createTab(String aTabIdentifier, TableView<CommandResult> commandList, ObservableList<CommandResult> clData) {
 		// Richtet den Plugin-spezifischen Tab ein
 
-		Tab pdfTab = new Tab();
-		pdfTab.setText(aTabIdentifier);
-		pdfTab.setId(aTabIdentifier);
+		Tab genericTab = new Tab();
+		genericTab.setText(aTabIdentifier);
+		genericTab.setId(aTabIdentifier);
 		
 		Image imgTabStatus = new Image("/images/gui/ban-2x.png");
-		pdfTab.setGraphic(new ImageView(imgTabStatus));
+		genericTab.setGraphic(new ImageView(imgTabStatus));
 		
 		// LogBox
 		BorderPane root = new BorderPane();
 
 		// Top bauen
 		HBox hbox = new HBox();
-
-		Image imgClear = new Image("/images/gui/trash-2x.png");
-		
-		btnClear.setText("Clear");
-		btnClear.setGraphic(new ImageView(imgClear));
-		btnClear.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent event) {
-				clData.clear();
-			}
-		});
-		
-		hbox.getChildren().addAll(btnClear);
+//		hbox.getChildren().addAll(btnClear);
 		
 		// Table bauen
 		TableColumn selCommand = new TableColumn("Command");
@@ -130,11 +103,27 @@ public abstract class AbstractTestAdaptionPlugin implements TestAdaptionPlugin {
 		commandList.setItems(clData);
 		commandList.getColumns().addAll(selCommand, selTarget, selValue, selResult, selInfo);
 
+		
+		final ContextMenu tableContextMenu = new ContextMenu();
+		final MenuItem clearMenuItem = new MenuItem("Clear all");
+		Image imgClear = new Image("/images/gui/trash-2x.png");
+		clearMenuItem.setGraphic(new ImageView(imgClear));
+		clearMenuItem.setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) {
+				clData.clear();
+			}
+		});
+		
+		tableContextMenu.getItems().addAll(clearMenuItem);
+		commandList.setContextMenu(tableContextMenu);
+		
 		// einfuegen
 		root.setTop(hbox);
 		root.setCenter(commandList);
-		pdfTab.setContent(root);
+		genericTab.setContent(root);
 
-		return pdfTab;
+		return genericTab;
 	}
 }
