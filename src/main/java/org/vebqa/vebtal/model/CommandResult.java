@@ -10,12 +10,15 @@ public class CommandResult {
 	private final SimpleStringProperty result;
 	private final SimpleStringProperty loginfo;
 
-	public CommandResult(String aCommand, String aTarget, String aValue) {
+	private final CommandType type;
+	
+	public CommandResult(String aCommand, String aTarget, String aValue, CommandType aType) {
 		this.command = new SimpleStringProperty(aCommand);
 		this.target = new SimpleStringProperty(aTarget);
 		this.value = new SimpleStringProperty(aValue);
 		this.result = new SimpleStringProperty("testing..");
 		this.loginfo = new SimpleStringProperty("");
+		this.type = aType;
 	}
 
 	public String getCommand() {
@@ -48,5 +51,9 @@ public class CommandResult {
 	
 	public void setLogInfo(String anInfo) {
 		this.loginfo.set(anInfo);
+	}
+	
+	public CommandType getType() {
+		return this.type;
 	}
 }

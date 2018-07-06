@@ -1,6 +1,7 @@
 package org.vebqa.vebtal;
 
 import org.vebqa.vebtal.model.CommandResult;
+import org.vebqa.vebtal.model.CommandType;
 
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -72,9 +73,14 @@ public abstract class AbstractTestAdaptionPlugin implements TestAdaptionPlugin {
 
 		// Top bauen
 		HBox hbox = new HBox();
-//		hbox.getChildren().addAll(btnClear);
 		
 		// Table bauen
+		TableColumn selCommandType = new TableColumn("Type");
+		selCommandType.setCellValueFactory(new PropertyValueFactory<CommandResult, CommandType>("type"));
+		selCommandType.setCellFactory(new CommandTypeCellFactory());
+		selCommandType.setSortable(false);
+		selCommandType.setPrefWidth(36); // fixed width!
+		
 		TableColumn selCommand = new TableColumn("Command");
 		selCommand.setCellValueFactory(new PropertyValueFactory<CommandResult, String>("command"));
 		selCommand.setSortable(false);
@@ -101,8 +107,7 @@ public abstract class AbstractTestAdaptionPlugin implements TestAdaptionPlugin {
 		selInfo.prefWidthProperty().bind(commandList.widthProperty().multiply(0.45));
 
 		commandList.setItems(clData);
-		commandList.getColumns().addAll(selCommand, selTarget, selValue, selResult, selInfo);
-
+		commandList.getColumns().addAll(selCommandType, selCommand, selTarget, selValue, selResult, selInfo);
 		
 		final ContextMenu tableContextMenu = new ContextMenu();
 		final MenuItem clearMenuItem = new MenuItem("Clear all");

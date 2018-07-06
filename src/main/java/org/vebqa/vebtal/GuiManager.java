@@ -7,13 +7,12 @@ import org.vebqa.vebtal.sut.SutStatus;
 
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
-import javafx.scene.Node;
-import javafx.scene.control.SelectionModel;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
 
 @SuppressWarnings("restriction")
 public class GuiManager {
@@ -24,6 +23,8 @@ public class GuiManager {
 
 	private TabPane mainTabPane = new TabPane();
 
+	private BorderPane mainPane = new BorderPane();
+	
 	/** Logs **/
 	private TextArea textArea = new TextArea();
 
@@ -35,8 +36,12 @@ public class GuiManager {
 		return gui;
 	}
 	
-	public TabPane getMain() {
+	public TabPane getMainTab() {
 		return mainTabPane;
+	}
+	
+	public BorderPane getMain() {
+		return mainPane;
 	}
 	
 	public TextArea getLogArea() {

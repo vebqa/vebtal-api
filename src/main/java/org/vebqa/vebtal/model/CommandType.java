@@ -10,5 +10,6 @@ public enum CommandType {
 	ACTION,
 	ACCESSOR,
 	ASSERTION,
-	UTILLITY
+	UTILLITY,
+	UNDEFINED
 }
