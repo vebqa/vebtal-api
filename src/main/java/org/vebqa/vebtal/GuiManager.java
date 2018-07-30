@@ -1,6 +1,7 @@
 package org.vebqa.vebtal;
 
 
+import org.apache.commons.configuration2.CombinedConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.vebqa.vebtal.sut.SutStatus;
@@ -21,6 +22,8 @@ public class GuiManager {
 
 	private static final GuiManager gui = new GuiManager();
 
+	private CombinedConfiguration config;
+	
 	private TabPane mainTabPane = new TabPane();
 
 	private BorderPane mainPane = new BorderPane();
@@ -70,5 +73,9 @@ public class GuiManager {
 		if (!tabFound) {
 			logger.warn("No tab found with identifier {}!", anIdentifier);
 		}
+	}
+	
+	public CombinedConfiguration getConfig() {
+		return config;
 	}
 }

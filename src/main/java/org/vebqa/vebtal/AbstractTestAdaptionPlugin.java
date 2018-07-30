@@ -1,5 +1,14 @@
 package org.vebqa.vebtal;
 
+import java.io.File;
+
+import org.apache.commons.configuration2.FileBasedConfiguration;
+import org.apache.commons.configuration2.PropertiesConfiguration;
+import org.apache.commons.configuration2.builder.FileBasedConfigurationBuilder;
+import org.apache.commons.configuration2.builder.fluent.Parameters;
+import org.apache.commons.configuration2.ex.ConfigurationException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.vebqa.vebtal.model.CommandResult;
 import org.vebqa.vebtal.model.CommandType;
 
@@ -19,25 +28,27 @@ import javafx.scene.layout.HBox;
 
 @SuppressWarnings("restriction")
 public abstract class AbstractTestAdaptionPlugin implements TestAdaptionPlugin {
+
+	private static final Logger logger = LoggerFactory.getLogger(AbstractTestAdaptionPlugin.class);
 	
 	protected TestAdaptionType adaptionType;
-	
+
 	public AbstractTestAdaptionPlugin() {
 		throw new UnsupportedOperationException("Use constructor without setting the adaption type is forbidden.");
 	}
-	
+
 	public AbstractTestAdaptionPlugin(TestAdaptionType aType) {
 		this.adaptionType = aType;
 	}
-		
+
 	public TestAdaptionType getType() {
 		if (adaptionType == null) {
-			throw new UnsupportedOperationException("Adaption type has to be defined before!");	
+			throw new UnsupportedOperationException("Adaption type has to be defined before!");
 		} else {
 			return adaptionType;
 		}
 	}
-	
+
 	public Tab startup() {
 		throw new UnsupportedOperationException("startup not yet implemented.");
 	}
@@ -45,42 +56,43 @@ public abstract class AbstractTestAdaptionPlugin implements TestAdaptionPlugin {
 	public boolean shutdown() {
 		throw new UnsupportedOperationException("shutdown not yet implemented.");
 	}
-	
+
 	public Class<?> getImplementation() {
 		throw new UnsupportedOperationException("not yet implemented.");
 	}
-	
+
 	public String getAdaptionID() {
 		throw new UnsupportedOperationException("not yet imlemented.");
 	}
-	
+
 	public static void setDisableUserActions(boolean aState) {
 		// Platform.runLater(() -> btnClear.setDisable(aState));
 	}
-	
-	protected Tab createTab(String aTabIdentifier, TableView<CommandResult> commandList, ObservableList<CommandResult> clData) {
+
+	protected Tab createTab(String aTabIdentifier, TableView<CommandResult> commandList,
+			ObservableList<CommandResult> clData) {
 		// Richtet den Plugin-spezifischen Tab ein
 
 		Tab genericTab = new Tab();
 		genericTab.setText(aTabIdentifier);
 		genericTab.setId(aTabIdentifier);
-		
+
 		Image imgTabStatus = new Image("/images/gui/ban-2x.png");
 		genericTab.setGraphic(new ImageView(imgTabStatus));
-		
+
 		// LogBox
 		BorderPane root = new BorderPane();
 
 		// Top bauen
 		HBox hbox = new HBox();
-		
+
 		// Table bauen
 		TableColumn selCommandType = new TableColumn("Type");
 		selCommandType.setCellValueFactory(new PropertyValueFactory<CommandResult, CommandType>("type"));
 		selCommandType.setCellFactory(new CommandTypeCellFactory());
 		selCommandType.setSortable(false);
 		selCommandType.setPrefWidth(36); // fixed width!
-		
+
 		TableColumn selCommand = new TableColumn("Command");
 		selCommand.setCellValueFactory(new PropertyValueFactory<CommandResult, String>("command"));
 		selCommand.setSortable(false);
@@ -108,22 +120,22 @@ public abstract class AbstractTestAdaptionPlugin implements TestAdaptionPlugin {
 
 		commandList.setItems(clData);
 		commandList.getColumns().addAll(selCommandType, selCommand, selTarget, selValue, selResult, selInfo);
-		
+
 		final ContextMenu tableContextMenu = new ContextMenu();
 		final MenuItem clearMenuItem = new MenuItem("Clear all");
 		Image imgClear = new Image("/images/gui/trash-2x.png");
 		clearMenuItem.setGraphic(new ImageView(imgClear));
 		clearMenuItem.setOnAction(new EventHandler<ActionEvent>() {
-			
+
 			@Override
 			public void handle(ActionEvent event) {
 				clData.clear();
 			}
 		});
-		
+
 		tableContextMenu.getItems().addAll(clearMenuItem);
 		commandList.setContextMenu(tableContextMenu);
-		
+
 		// einfuegen
 		root.setTop(hbox);
 		root.setCenter(commandList);

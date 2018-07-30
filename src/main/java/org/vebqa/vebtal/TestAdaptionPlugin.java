@@ -1,5 +1,7 @@
 package org.vebqa.vebtal;
 
+import org.apache.commons.configuration2.FileBasedConfiguration;
+
 import javafx.scene.control.Tab;
 
 @SuppressWarnings("restriction")
@@ -10,6 +12,8 @@ public interface TestAdaptionPlugin {
 	String getName();
 	
 	Tab startup();
+	
+	FileBasedConfiguration loadConfigString();
 	
 	boolean shutdown();
 	
