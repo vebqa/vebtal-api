@@ -1,6 +1,6 @@
 package org.vebqa.vebtal;
 
-import org.apache.commons.configuration2.FileBasedConfiguration;
+import org.apache.commons.configuration2.CombinedConfiguration;
 
 import javafx.scene.control.Tab;
 
@@ -13,7 +13,7 @@ public interface TestAdaptionPlugin {
 	
 	Tab startup();
 	
-	FileBasedConfiguration loadConfigString();
+	CombinedConfiguration loadConfig();
 	
 	boolean shutdown();
 	

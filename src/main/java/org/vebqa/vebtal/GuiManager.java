@@ -1,16 +1,26 @@
 package org.vebqa.vebtal;
 
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import org.apache.commons.configuration2.CombinedConfiguration;
+import org.apache.commons.configuration2.tree.OverrideCombiner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.vebqa.vebtal.model.ConfigurationCatalog;
 import org.vebqa.vebtal.sut.SutStatus;
 
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -22,7 +32,11 @@ public class GuiManager {
 
 	private static final GuiManager gui = new GuiManager();
 
-	private CombinedConfiguration config;
+	private CombinedConfiguration config = new CombinedConfiguration(new OverrideCombiner());
+	
+	private static final TableView<ConfigurationCatalog> configList = new TableView<>();
+	private static final ObservableList<ConfigurationCatalog> configData = FXCollections.observableArrayList();
+
 	
 	private TabPane mainTabPane = new TabPane();
 
@@ -77,5 +91,53 @@ public class GuiManager {
 	
 	public CombinedConfiguration getConfig() {
 		return config;
+	}
+	
+	public void showConfig() {
+		ObservableList<Tab> tabs = mainTabPane.getTabs();
+		for (final Tab aTab : tabs) {
+			if (aTab.getId() == "config") {
+				Iterator<String> keys = config.getKeys();
+				List<String> keyList = new ArrayList<String>();
+				while(keys.hasNext()) {
+					String aKey = keys.next();
+					final ConfigurationCatalog tCC = new ConfigurationCatalog(aKey, config.getString(aKey));
+					
+					Platform.runLater(new Runnable() {
+						
+						@Override
+						public void run() {
+							configData.add(tCC);
+						}
+					});
+				}
+			}
+		}
+	}
+	
+	public Tab createConfigTab() {
+		Tab genericTab = new Tab();
+		genericTab.setText("Config");
+		genericTab.setId("config");
+		
+		BorderPane root = new BorderPane();
+		// Table bauen
+		TableColumn confKey = new TableColumn("Key");
+		confKey.setCellValueFactory(new PropertyValueFactory<ConfigurationCatalog, String>("key"));
+		confKey.setSortable(false);
+		confKey.prefWidthProperty().bind(configList.widthProperty().multiply(0.25));
+
+		TableColumn confValue = new TableColumn("Value");
+		confValue.setCellValueFactory(new PropertyValueFactory<ConfigurationCatalog, String>("value"));
+		confValue.setSortable(false);
+		confValue.prefWidthProperty().bind(configList.widthProperty().multiply(0.25));
+		
+		configList.setItems(configData);
+		configList.getColumns().addAll(confKey, confValue);
+		
+		root.setCenter(configList);
+		genericTab.setContent(root);
+		
+		return genericTab;
 	}
 }

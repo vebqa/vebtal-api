@@ -2,11 +2,13 @@ package org.vebqa.vebtal;
 
 import java.io.File;
 
+import org.apache.commons.configuration2.CombinedConfiguration;
 import org.apache.commons.configuration2.FileBasedConfiguration;
 import org.apache.commons.configuration2.PropertiesConfiguration;
 import org.apache.commons.configuration2.builder.FileBasedConfigurationBuilder;
 import org.apache.commons.configuration2.builder.fluent.Parameters;
 import org.apache.commons.configuration2.ex.ConfigurationException;
+import org.apache.commons.configuration2.tree.OverrideCombiner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.vebqa.vebtal.model.CommandResult;
@@ -143,4 +145,46 @@ public abstract class AbstractTestAdaptionPlugin implements TestAdaptionPlugin {
 
 		return genericTab;
 	}
+	
+	protected CombinedConfiguration loadConfig(String aTabIdentifier) {
+		Parameters params = new Parameters();
+		String tPropertiesCoreName = aTabIdentifier + ".properties";
+		File tPropertiesCore = new File(tPropertiesCoreName);
+		FileBasedConfigurationBuilder<FileBasedConfiguration> builderCore = new FileBasedConfigurationBuilder<FileBasedConfiguration>(
+				PropertiesConfiguration.class)
+						.configure(params.properties().setFile(tPropertiesCore));
+		FileBasedConfiguration configCore = null;
+
+		try {
+			configCore = builderCore.getConfiguration();
+		} catch (ConfigurationException e) {
+			logger.error("Couldnt load configuration file: {} because of ", tPropertiesCore.getAbsolutePath(), e.getMessage(), e);
+		}
+
+		String tPropertiesUserName = aTabIdentifier + "_user.properties";
+		File tPropertiesUser = new File("./conf/" + tPropertiesUserName);
+		FileBasedConfigurationBuilder<FileBasedConfiguration> builderUser = new FileBasedConfigurationBuilder<FileBasedConfiguration>(
+				PropertiesConfiguration.class)
+						.configure(params.properties().setFile(tPropertiesUser));
+		FileBasedConfiguration configUser = null;
+
+		try {
+			configUser = builderUser.getConfiguration();
+		} catch (ConfigurationException e) {
+			logger.error("Couldnt load configuration file: {}", tPropertiesUser.getAbsolutePath());
+		}
+		
+		
+		// use an override strategy
+		CombinedConfiguration configCombined = new CombinedConfiguration(new OverrideCombiner());
+		// load user configuration first
+		if (configUser != null) {
+			configCombined.addConfiguration(configUser);
+		}
+		// core config is added
+		if (configCore != null) {
+			configCombined.addConfiguration(configCore);
+		}
+		return configCombined;
+	}	
 }
