@@ -1,6 +1,5 @@
 package org.vebqa.vebtal;
 
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -125,12 +124,14 @@ public class GuiManager {
 		TableColumn confKey = new TableColumn("Key");
 		confKey.setCellValueFactory(new PropertyValueFactory<ConfigurationCatalog, String>("key"));
 		confKey.setSortable(false);
-		confKey.prefWidthProperty().bind(configList.widthProperty().multiply(0.25));
-
+		// confKey.prefWidthProperty().bind(configList.widthProperty().multiply(0.25));
+		confKey.setMaxWidth(configList.getPrefWidth() * 0.25);
+		
 		TableColumn confValue = new TableColumn("Value");
 		confValue.setCellValueFactory(new PropertyValueFactory<ConfigurationCatalog, String>("value"));
 		confValue.setSortable(false);
-		confValue.prefWidthProperty().bind(configList.widthProperty().multiply(0.25));
+		// confValue.prefWidthProperty().bind(configList.widthProperty().multiply(0.25));
+		confValue.setMaxWidth(configList.getPrefWidth() * 0.25);
 		
 		configList.setItems(configData);
 		configList.getColumns().addAll(confKey, confValue);

@@ -98,28 +98,33 @@ public abstract class AbstractTestAdaptionPlugin implements TestAdaptionPlugin {
 		TableColumn selCommand = new TableColumn("Command");
 		selCommand.setCellValueFactory(new PropertyValueFactory<CommandResult, String>("command"));
 		selCommand.setSortable(false);
-		selCommand.prefWidthProperty().bind(commandList.widthProperty().multiply(0.15));
-
+		// selCommand.prefWidthProperty().bind(commandList.widthProperty().multiply(0.15));
+		selCommand.setMaxWidth(commandList.getPrefWidth() * 0.15);
+		
 		TableColumn selTarget = new TableColumn("Target");
 		selTarget.setCellValueFactory(new PropertyValueFactory<CommandResult, String>("target"));
 		selTarget.setSortable(false);
-		selTarget.prefWidthProperty().bind(commandList.widthProperty().multiply(0.15));
-
+		// selTarget.prefWidthProperty().bind(commandList.widthProperty().multiply(0.15));
+		selTarget.setMaxWidth(commandList.getPrefWidth() * 0.15);
+		
 		TableColumn selValue = new TableColumn("Value");
 		selValue.setCellValueFactory(new PropertyValueFactory<CommandResult, String>("value"));
 		selValue.setSortable(false);
-		selValue.prefWidthProperty().bind(commandList.widthProperty().multiply(0.15));
-
+		// selValue.prefWidthProperty().bind(commandList.widthProperty().multiply(0.15));
+		selValue.setMaxWidth(commandList.getPrefWidth() * 0.15);
+		
 		TableColumn selResult = new TableColumn("Result");
 		selResult.setCellValueFactory(new PropertyValueFactory<CommandResult, Image>("result"));
 		selResult.setSortable(false);
-		selResult.prefWidthProperty().bind(commandList.widthProperty().multiply(0.10));
-
+		// selResult.prefWidthProperty().bind(commandList.widthProperty().multiply(0.10));
+		selResult.setMaxWidth(commandList.getPrefWidth() * 0.10);
+		
 		TableColumn selInfo = new TableColumn("LogInfo");
 		selInfo.setCellValueFactory(new PropertyValueFactory<CommandResult, String>("loginfo"));
 		selInfo.setSortable(false);
-		selInfo.prefWidthProperty().bind(commandList.widthProperty().multiply(0.45));
-
+		// selInfo.prefWidthProperty().bind(commandList.widthProperty().multiply(0.45));
+		selInfo.setMaxWidth(commandList.getPrefWidth() * 0.45);
+		
 		commandList.setItems(clData);
 		commandList.getColumns().addAll(selCommandType, selCommand, selTarget, selValue, selResult, selInfo);
 
