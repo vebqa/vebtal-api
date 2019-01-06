@@ -5,11 +5,11 @@
 	<parent>
 		<groupId>com.github.vebqa</groupId>
 		<artifactId>vebtal-parent</artifactId>
-		<version>0.9.3</version>
+		<version>0.9.4</version>
 	</parent>
 
 	<artifactId>vebtal-api</artifactId>
-	<version>0.9.6</version>
+	<version>0.9.7</version>
 
 	<name>Common API for vebtal system</name>
 	<description>define common api, interfaces and models for vebtal</description>
@@ -40,7 +40,7 @@
 		<dependency>
 			<groupId>org.openjfx</groupId>
 			<artifactId>javafx-controls</artifactId>
-			<version>11</version>
+			<version>11.0.1</version>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.commons</groupId>
