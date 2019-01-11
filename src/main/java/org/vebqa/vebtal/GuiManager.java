@@ -97,7 +97,7 @@ public class GuiManager {
 		for (final Tab aTab : tabs) {
 			if (aTab.getId() == "config") {
 				Iterator<String> keys = config.getKeys();
-				List<String> keyList = new ArrayList<String>();
+				// List<String> keyList = new ArrayList<String>();
 				while(keys.hasNext()) {
 					String aKey = keys.next();
 					final ConfigurationCatalog tCC = new ConfigurationCatalog(aKey, config.getString(aKey));
@@ -125,13 +125,13 @@ public class GuiManager {
 		confKey.setCellValueFactory(new PropertyValueFactory<ConfigurationCatalog, String>("key"));
 		confKey.setSortable(false);
 		// confKey.prefWidthProperty().bind(configList.widthProperty().multiply(0.25));
-		confKey.setMaxWidth(configList.getPrefWidth() * 0.25);
+		confKey.setMinWidth(configList.getPrefWidth() * 0.25);
 		
 		TableColumn confValue = new TableColumn("Value");
 		confValue.setCellValueFactory(new PropertyValueFactory<ConfigurationCatalog, String>("value"));
 		confValue.setSortable(false);
 		// confValue.prefWidthProperty().bind(configList.widthProperty().multiply(0.25));
-		confValue.setMaxWidth(configList.getPrefWidth() * 0.25);
+		confValue.setMinWidth(configList.getPrefWidth() * 0.25);
 		
 		configList.setItems(configData);
 		configList.getColumns().addAll(confKey, confValue);

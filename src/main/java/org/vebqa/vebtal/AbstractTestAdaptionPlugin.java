@@ -28,7 +28,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 
-@SuppressWarnings("restriction")
 public abstract class AbstractTestAdaptionPlugin implements TestAdaptionPlugin {
 
 	private static final Logger logger = LoggerFactory.getLogger(AbstractTestAdaptionPlugin.class);
@@ -99,31 +98,31 @@ public abstract class AbstractTestAdaptionPlugin implements TestAdaptionPlugin {
 		selCommand.setCellValueFactory(new PropertyValueFactory<CommandResult, String>("command"));
 		selCommand.setSortable(false);
 		// selCommand.prefWidthProperty().bind(commandList.widthProperty().multiply(0.15));
-		selCommand.setMaxWidth(commandList.getPrefWidth() * 0.15);
+		selCommand.setMinWidth(commandList.getPrefWidth() * 0.15);
 		
 		TableColumn selTarget = new TableColumn("Target");
 		selTarget.setCellValueFactory(new PropertyValueFactory<CommandResult, String>("target"));
 		selTarget.setSortable(false);
 		// selTarget.prefWidthProperty().bind(commandList.widthProperty().multiply(0.15));
-		selTarget.setMaxWidth(commandList.getPrefWidth() * 0.15);
+		selTarget.setMinWidth(commandList.getPrefWidth() * 0.15);
 		
 		TableColumn selValue = new TableColumn("Value");
 		selValue.setCellValueFactory(new PropertyValueFactory<CommandResult, String>("value"));
 		selValue.setSortable(false);
 		// selValue.prefWidthProperty().bind(commandList.widthProperty().multiply(0.15));
-		selValue.setMaxWidth(commandList.getPrefWidth() * 0.15);
+		selValue.setMinWidth(commandList.getPrefWidth() * 0.15);
 		
 		TableColumn selResult = new TableColumn("Result");
 		selResult.setCellValueFactory(new PropertyValueFactory<CommandResult, Image>("result"));
 		selResult.setSortable(false);
 		// selResult.prefWidthProperty().bind(commandList.widthProperty().multiply(0.10));
-		selResult.setMaxWidth(commandList.getPrefWidth() * 0.10);
+		selResult.setMinWidth(commandList.getPrefWidth() * 0.10);
 		
 		TableColumn selInfo = new TableColumn("LogInfo");
 		selInfo.setCellValueFactory(new PropertyValueFactory<CommandResult, String>("loginfo"));
 		selInfo.setSortable(false);
 		// selInfo.prefWidthProperty().bind(commandList.widthProperty().multiply(0.45));
-		selInfo.setMaxWidth(commandList.getPrefWidth() * 0.45);
+		selInfo.setMinWidth(commandList.getPrefWidth() * 0.45);
 		
 		commandList.setItems(clData);
 		commandList.getColumns().addAll(selCommandType, selCommand, selTarget, selValue, selResult, selInfo);
@@ -154,7 +153,7 @@ public abstract class AbstractTestAdaptionPlugin implements TestAdaptionPlugin {
 	protected CombinedConfiguration loadConfig(String aTabIdentifier) {
 		Parameters params = new Parameters();
 		String tPropertiesCoreName = aTabIdentifier + ".properties";
-		File tPropertiesCore = new File(tPropertiesCoreName);
+		File tPropertiesCore = new File("./conf/"+tPropertiesCoreName);
 		FileBasedConfigurationBuilder<FileBasedConfiguration> builderCore = new FileBasedConfigurationBuilder<FileBasedConfiguration>(
 				PropertiesConfiguration.class)
 						.configure(params.properties().setFile(tPropertiesCore));
@@ -163,7 +162,7 @@ public abstract class AbstractTestAdaptionPlugin implements TestAdaptionPlugin {
 		try {
 			configCore = builderCore.getConfiguration();
 		} catch (ConfigurationException e) {
-			logger.error("Couldnt load configuration file: {} because of ", tPropertiesCore.getAbsolutePath(), e.getMessage(), e);
+			logger.error("Couldnt load configuration file: {} because of {}", tPropertiesCore.getAbsolutePath(), e.getMessage());
 		}
 
 		String tPropertiesUserName = aTabIdentifier + "_user.properties";
@@ -176,7 +175,7 @@ public abstract class AbstractTestAdaptionPlugin implements TestAdaptionPlugin {
 		try {
 			configUser = builderUser.getConfiguration();
 		} catch (ConfigurationException e) {
-			logger.error("Couldnt load configuration file: {}", tPropertiesUser.getAbsolutePath());
+			logger.error("Couldnt load configuration file: {} because of {}", tPropertiesUser.getAbsolutePath(), e.getMessage());
 		}
 		
 		
