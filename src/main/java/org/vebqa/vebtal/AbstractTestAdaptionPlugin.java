@@ -139,7 +139,19 @@ public abstract class AbstractTestAdaptionPlugin implements TestAdaptionPlugin {
 			}
 		});
 
-		tableContextMenu.getItems().addAll(clearMenuItem);
+		final MenuItem addMenuItem = new MenuItem("Add command");
+		Image imgAdd = new Image("/images/gui/plus-2x.png");
+		addMenuItem.setGraphic(new ImageView(imgAdd));
+		addMenuItem.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				clData.clear();
+			}
+		});
+		
+		
+		tableContextMenu.getItems().addAll(clearMenuItem, addMenuItem);
 		commandList.setContextMenu(tableContextMenu);
 
 		// einfuegen

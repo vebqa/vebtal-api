@@ -1,8 +1,6 @@
 package org.vebqa.vebtal;
 
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 import org.apache.commons.configuration2.CombinedConfiguration;
 import org.apache.commons.configuration2.tree.OverrideCombiner;
@@ -24,7 +22,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 
-@SuppressWarnings("restriction")
 public class GuiManager {
 
 	private static final Logger logger = LoggerFactory.getLogger(GuiManager.class);
@@ -97,7 +94,6 @@ public class GuiManager {
 		for (final Tab aTab : tabs) {
 			if (aTab.getId() == "config") {
 				Iterator<String> keys = config.getKeys();
-				// List<String> keyList = new ArrayList<String>();
 				while(keys.hasNext()) {
 					String aKey = keys.next();
 					final ConfigurationCatalog tCC = new ConfigurationCatalog(aKey, config.getString(aKey));
