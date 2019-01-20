@@ -2,6 +2,10 @@ package org.vebqa.vebtal.model;
 
 public class Response {
 
+	public static final String PASSED = "0";
+	
+	public static final String FAILED = "1";
+	
 	/**
 	 * data model
 	 */

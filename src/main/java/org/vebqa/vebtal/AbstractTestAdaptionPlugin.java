@@ -164,8 +164,10 @@ public abstract class AbstractTestAdaptionPlugin implements TestAdaptionPlugin {
 	
 	protected CombinedConfiguration loadConfig(String aTabIdentifier) {
 		Parameters params = new Parameters();
+		
+		// load default configuration from root
 		String tPropertiesCoreName = aTabIdentifier + ".properties";
-		File tPropertiesCore = new File("./conf/"+tPropertiesCoreName);
+		File tPropertiesCore = new File("./" + tPropertiesCoreName);
 		FileBasedConfigurationBuilder<FileBasedConfiguration> builderCore = new FileBasedConfigurationBuilder<FileBasedConfiguration>(
 				PropertiesConfiguration.class)
 						.configure(params.properties().setFile(tPropertiesCore));
@@ -177,6 +179,7 @@ public abstract class AbstractTestAdaptionPlugin implements TestAdaptionPlugin {
 			logger.error("Couldnt load configuration file: {} because of {}", tPropertiesCore.getAbsolutePath(), e.getMessage());
 		}
 
+		// load user configuration from /conf folder
 		String tPropertiesUserName = aTabIdentifier + "_user.properties";
 		File tPropertiesUser = new File("./conf/" + tPropertiesUserName);
 		FileBasedConfigurationBuilder<FileBasedConfiguration> builderUser = new FileBasedConfigurationBuilder<FileBasedConfiguration>(
