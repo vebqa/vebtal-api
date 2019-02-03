@@ -17,11 +17,13 @@ import org.vebqa.vebtal.model.CommandType;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.Button;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -86,6 +88,7 @@ public abstract class AbstractTestAdaptionPlugin implements TestAdaptionPlugin {
 
 		// Top bauen
 		HBox hbox = new HBox();
+		hbox.setId("table");
 
 		// Table bauen
 		TableColumn selCommandType = new TableColumn("Type");
@@ -146,7 +149,12 @@ public abstract class AbstractTestAdaptionPlugin implements TestAdaptionPlugin {
 
 			@Override
 			public void handle(ActionEvent event) {
-				clData.clear();
+				clData.add(new CommandResult(
+			            new String(),
+			            new String(),
+			            new String(),
+			            CommandType.UNDEFINED
+			        ));
 			}
 		});
 		
