@@ -150,9 +150,9 @@ public abstract class AbstractTestAdaptionPlugin implements TestAdaptionPlugin {
 			@Override
 			public void handle(ActionEvent event) {
 				clData.add(new CommandResult(
-			            new String(),
-			            new String(),
-			            new String(),
+			            "",
+			            "",
+			            "",
 			            CommandType.UNDEFINED
 			        ));
 			}

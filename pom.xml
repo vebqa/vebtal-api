@@ -28,7 +28,7 @@
 	<properties>
 		<modulename>vebtalapi</modulename>
 	</properties>
-	
+
 	<scm>
 		<url>https://github.com/vebqa/vebtal-api</url>
 	</scm>
@@ -55,6 +55,11 @@
 			<groupId>commons-beanutils</groupId>
 			<artifactId>commons-beanutils</artifactId>
 			<version>1.9.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.reflections</groupId>
+			<artifactId>reflections</artifactId>
+			<version>0.9.11</version>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
