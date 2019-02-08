@@ -49,7 +49,8 @@ public class KeywordFinder {
 	
 	/**
 	 * Returns all custom keywords, found by the annotation scanner. Needs a scan before.
-	 * @return
+	 * 
+	 * @return list of all keywords defined
 	 */
 	public List<KeywordEntry> getKeywords() {
 		return this.allCustomKeywords;
@@ -57,7 +58,8 @@ public class KeywordFinder {
 	
 	/**
 	 * Returns all custom keywords, filtered by module name. Needs a scan before.
-	 * @param aModule
+	 * 
+	 * @param aModule a module to search for
 	 * @return List of keywords
 	 */
 	public List<KeywordEntry> getKeywordsByModule(String aModule) {

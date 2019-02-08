@@ -21,7 +21,11 @@ public class CommandAutoComplete extends TextField {
 	/** The popup used to select an entry. */
 	private ContextMenu entriesPopup;
 
-	/** Construct a new AutoCompleteTextField. */
+	/** 
+	 * Construct a new AutoCompleteTextField. 
+	 * 
+	 * @param allCmds all commands
+	 * */
 	public CommandAutoComplete(TreeSet<String> allCmds) {
 		super();
 		entries = allCmds;
