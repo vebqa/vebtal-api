@@ -5,13 +5,13 @@ import org.vebqa.vebtal.model.Response;
 
 public interface TestAdaptionResource {
 
-	public Response execute(Command aCmd);
+	Response execute(Command aCmd);
 	
-	public String getCommandClassName(Command aCmd);
+	String getCommandClassName(Command aCmd);
 	
-	public Long getDuration();
+	Long getDuration();
 	
-	public void setStart();
+	void setStart();
 	
-	public void setFinished();
+	void setFinished();
 }

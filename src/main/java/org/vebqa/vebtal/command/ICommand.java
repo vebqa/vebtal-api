@@ -5,8 +5,8 @@ import org.vebqa.vebtal.model.Response;
 
 public interface ICommand {
 	
-	public CommandType getType();
+	CommandType getType();
 	
-	public Response executeImpl(Object aDriver);
+	Response executeImpl(Object aDriver);
 
 }

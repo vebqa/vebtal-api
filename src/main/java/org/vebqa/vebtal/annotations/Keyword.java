@@ -10,10 +10,10 @@ import java.lang.annotation.Target;
 
 public @interface Keyword {
 
-	public String module() default "";
-    public String command() default "";
-    public String description() default "";
-    public String hintTarget() default "";
-    public String hintValue() default "";
+	String module() default "";
+    String command() default "";
+    String description() default "";
+    String hintTarget() default "";
+    String hintValue() default "";
 
 }
