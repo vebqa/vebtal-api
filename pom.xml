@@ -9,7 +9,7 @@
 	</parent>
 
 	<artifactId>vebtal-api</artifactId>
-	<version>0.9.10</version>
+	<version>0.9.12</version>
 
 	<name>Common API for vebtal system</name>
 	<description>define common api, interfaces and models for vebtal</description>
