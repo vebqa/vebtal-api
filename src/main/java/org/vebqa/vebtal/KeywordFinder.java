@@ -82,4 +82,16 @@ public class KeywordFinder {
 		logger.info(moduleKeywords.size() + " custom keywords for specific module found out of all: " + this.allCustomKeywords.size());
 		return moduleKeywords;
 	}
+	
+	public boolean isKeywordExisting(String aModule, String aCmd) {
+		List<KeywordEntry> moduleKeywords = new ArrayList<KeywordEntry>();
+		for (KeywordEntry aKeyword : this.allCustomKeywords) {
+			if (aKeyword.getModule().contentEquals(aModule)) {
+				if (aKeyword.getCommand().equalsIgnoreCase(aCmd)) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}	
 }
