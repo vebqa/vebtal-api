@@ -1,0 +1,108 @@
+<document xmlns="http://maven.apache.org/changes/1.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/changes/1.0.0 http://maven.apache.org/xsd/changes-1.0.0.xsd">
+	<properties>
+		<title>VEBTAL PDF - Test Adaption Layer</title>
+		<author email="kdoerges@googlemail.com">Karsten Doerges</author>
+	</properties>
+	<body>
+		<release version="0.9.13" date="2019-03.19"
+			description="introduce new keywords to verify form fields">
+			<action dev="kdoerges" type="add">
+				allow validation of commands
+			</action>
+		</release>
+		<release version="0.9.12" date="2019-02.28" description="">
+			<action dev="kdoerges" type="add">
+				update dependencies
+			</action>
+		</release>
+		<release version="0.9.11" date="2019-02.18" description="">
+			<action dev="kdoerges" type="add">
+				fix limit for auto completion
+			</action>
+		</release>
+		<release version="0.9.10" date="2019-02.08" description="">
+			<action dev="kdoerges" type="add">
+				add attribute module to keyword
+				annotation
+			</action>
+			<action dev="kdoerges" type="add">
+				add auto completion, including
+				keyword resolver
+			</action>
+			<action dev="kdoerges" type="add">
+				new keyword marker interface
+			</action>
+			<action dev="kdoerges" type="update">
+				update dependencies
+			</action>
+		</release>
+		<release version="0.9.9" date="2019-01.20" description="">
+			<action dev="kdoerges" type="fix">
+				fix fx minwidth
+			</action>
+		</release>
+		<release version="0.9.8" date="2019-01.10"
+			description="introduce new keywords to verify form fields">
+			<action dev="kdoerges" type="add">
+			</action>
+		</release>
+		<release version="0.9.7" date="2019-01.06" description="">
+			<action dev="kdoerges" type="update">
+				update dependencies
+			</action>
+		</release>
+		<release version="0.9.6" date="2019-01.03" description="">
+			<action dev="kdoerges" type="fix">
+				fix setmaxwidth property in table
+			</action>
+		</release>
+		<release version="0.9.5" date="2018-12.11" description="">
+			<action dev="kdoerges" type="update">
+				update dependencies
+			</action>
+		</release>
+		<release version="0.9.4" date="2018-08.02" description="">
+			<action dev="kdoerges" type="update">
+				update dependencies
+			</action>
+		</release>
+		<release version="0.9.3" date="2018-07.31" description="">
+			<action dev="kdoerges" type="add">
+				add new modular config loader
+			</action>
+			<action dev="kdoerges" type="add">
+				add visualization of commandtype
+				in result screen
+			</action>
+		</release>
+		<release version="0.9.2" date="2018-07.04" description="">
+			<action dev="kdoerges" type="add">
+				introduce SUT connect status
+			</action>
+			<action dev="kdoerges" type="add">
+				add generic clear button to every
+				tab
+			</action>
+			<action dev="kdoerges" type="add">
+				provide start ant stop time for
+				keyword execution
+			</action>
+		</release>
+		<release version="0.9.1" date="2018-06.19" description="">
+			<action dev="kdoerges" type="add">
+				new interface CommandType for
+				keywords
+			</action>
+			<action dev="kdoerges" type="add">
+				new interface TestAdaptionResource
+			</action>
+			<action dev="kdoerges" type="add">
+				initial release, moved from other
+				repo
+			</action>
+		</release>
+
+	</body>
+</document>
