@@ -19,12 +19,16 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 
@@ -128,7 +132,10 @@ public abstract class AbstractTestAdaptionPlugin implements TestAdaptionPlugin {
 		commandList.setItems(clData);
 		commandList.getColumns().addAll(selCommandType, selCommand, selTarget, selValue, selResult, selInfo);
 
+		// we need to define a context menu
 		final ContextMenu tableContextMenu = new ContextMenu();
+		
+		// we need a clear all button
 		final MenuItem clearMenuItem = new MenuItem("Clear all");
 		Image imgClear = new Image("/images/gui/trash-2x.png");
 		clearMenuItem.setGraphic(new ImageView(imgClear));
@@ -140,8 +147,40 @@ public abstract class AbstractTestAdaptionPlugin implements TestAdaptionPlugin {
 			}
 		});
 
+		// we want to copy cells
+		commandList.getSelectionModel().setCellSelectionEnabled(true);
+		commandList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
+		final MenuItem copyMenuItem = new MenuItem("Copy");
+		Image imgCopy = new Image("/images/gui/copy.png");
+		copyMenuItem.setGraphic(new ImageView(imgCopy));
+				
+		copyMenuItem.setOnAction(new EventHandler<ActionEvent>() {
+		    @Override
+		    public void handle(ActionEvent event) {
+		        ObservableList<TablePosition> posList = commandList.getSelectionModel().getSelectedCells();
+		        int old_r = -1;
+		        StringBuilder clipboardString = new StringBuilder();
+		        for (TablePosition p : posList) {
+		            int r = p.getRow();
+		            int c = p.getColumn();
+		            Object cell = commandList.getColumns().get(c).getCellData(r);
+		            if (cell == null)
+		                cell = "";
+		            if (old_r == r)
+		                clipboardString.append('\t');
+		            else if (old_r != -1)
+		                clipboardString.append('\n');
+		            clipboardString.append(cell);
+		            old_r = r;
+		        }
+		        final ClipboardContent content = new ClipboardContent();
+		        content.putString(clipboardString.toString());
+		        Clipboard.getSystemClipboard().setContent(content);
+		    }
+		});
 		
-		tableContextMenu.getItems().addAll(clearMenuItem);
+		tableContextMenu.getItems().addAll(clearMenuItem, copyMenuItem);
 		commandList.setContextMenu(tableContextMenu);
 
 		// einfuegen

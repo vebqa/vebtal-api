@@ -2,10 +2,16 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/changes/1.0.0 http://maven.apache.org/xsd/changes-1.0.0.xsd">
 	<properties>
-		<title>VEBTAL PDF - Test Adaption Layer</title>
+		<title>VEBTAL API - Test Adaption Layer</title>
 		<author email="kdoerges@googlemail.com">Karsten Doerges</author>
 	</properties>
 	<body>
+		<release version="1.0.1" date="2019-05.09"
+			description="refine usability">
+			<action dev="kdoerges" type="add">
+				add copy to context menu for tabel cells
+			</action>
+		</release>	
 		<release version="1.0.0" date="2019-05.08"
 			description="switch to 1.0.0">
 			<action dev="kdoerges" type="update">
@@ -13,12 +19,12 @@
 			</action>
 		</release>	
 		<release version="0.9.13" date="2019-03.19"
-			description="introduce new keywords to verify form fields">
+			description="add validation">
 			<action dev="kdoerges" type="add">
 				allow validation of commands
 			</action>
 		</release>
-		<release version="0.9.12" date="2019-02.28" description="">
+		<release version="0.9.12" date="2019-02.28" description="updated dependencies">
 			<action dev="kdoerges" type="add">
 				update dependencies
 			</action>
