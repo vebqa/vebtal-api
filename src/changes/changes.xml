@@ -8,23 +8,28 @@
 	<body>
 		<release version="1.0.1" date="2019-05.09"
 			description="refine usability">
-			<action dev="kdoerges" type="add">
-				add copy to context menu for tabel cells
+			<action dev="kdoerges" type="update">
+				update to parent 1.0.1
 			</action>
-		</release>	
+			<action dev="kdoerges" type="add">
+				add copy to context menu for tabel
+				cells
+			</action>
+		</release>
 		<release version="1.0.0" date="2019-05.08"
 			description="switch to 1.0.0">
 			<action dev="kdoerges" type="update">
 				update to parent 1.0.0
 			</action>
-		</release>	
+		</release>
 		<release version="0.9.13" date="2019-03.19"
 			description="add validation">
 			<action dev="kdoerges" type="add">
 				allow validation of commands
 			</action>
 		</release>
-		<release version="0.9.12" date="2019-02.28" description="updated dependencies">
+		<release version="0.9.12" date="2019-02.28"
+			description="updated dependencies">
 			<action dev="kdoerges" type="add">
 				update dependencies
 			</action>
