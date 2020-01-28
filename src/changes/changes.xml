@@ -6,6 +6,15 @@
 		<author email="kdoerges@googlemail.com">Karsten Doerges</author>
 	</properties>
 	<body>
+		<release version="1.0.3.1" date="2020-01.25"
+			description="improve generic keyword processing">
+			<action dev="kdoerges" type="update">
+				update reflection 0.9.12
+			</action>
+			<action dev="kdoerges" type="add">
+				add second, more generic, keywword package
+			</action>			
+		</release>
 		<release version="1.0.3" date="2019-12.03"
 			description="maintain dependencies">
 			<action dev="kdoerges" type="update">
