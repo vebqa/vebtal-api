@@ -7,6 +7,14 @@ public class KeywordEntry {
 	private String hintTarget;
 	private String hintValue;
 
+	/**
+	 * Spec of a single keyword
+	 * 
+	 * @param aModule references openTal adapter
+	 * @param aCommand command
+	 * @param aHintTarget description of target field
+	 * @param aHintValue description of value field
+	 */
 	public KeywordEntry(String aModule, String aCommand, String aHintTarget, String aHintValue) {
 		this.module = aModule;
 		this.command = aCommand;

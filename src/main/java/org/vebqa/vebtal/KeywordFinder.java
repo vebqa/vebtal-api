@@ -29,10 +29,14 @@ public class KeywordFinder {
 	private static final String commonCommandPackage = "org.opental";
 
 	/**
+	 * TODO: Move list to central storage
 	 * storage for all keywords found in classpath
 	 */
 	private List<KeywordEntry> allCustomKeywords = new ArrayList<KeywordEntry>();
 
+	/**
+	 * default
+	 */
 	public KeywordFinder() {
 		logger.debug("Keywordfinder created, classpath not scanned yet. Use scan before usage.");
 	}

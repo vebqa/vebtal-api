@@ -1,6 +1,8 @@
 package org.vebqa.vebtal;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 import org.apache.commons.configuration2.CombinedConfiguration;
 import org.apache.commons.configuration2.tree.OverrideCombiner;
@@ -28,6 +30,12 @@ public class GuiManager {
 
 	private static final GuiManager gui = new GuiManager();
 
+	/**
+	 * general config storage
+	 * - settings for each plugin
+	 * - plugin specific root
+	 * - keyword registry
+	 */
 	private CombinedConfiguration config = new CombinedConfiguration(new OverrideCombiner());
 	
 	private static final TableView<ConfigurationCatalog> configList = new TableView<>();
