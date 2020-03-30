@@ -56,5 +56,10 @@ public class Response {
 		this.code = code;
 	}
 	
-	
+	public String toString() {
+		if ((this.storedKey == null) || this.getStoredKey().isEmpty()) {
+			return "[Code: " + this.code + ", " + "Message: " + this.message + "]";
+		}
+		return "[Code: " + this.code + ", " + "Message: " + this.message + ", " + "StoredKey: " + this.storedKey + ", " + "StoredValue: " + this.storedValue + "]";
+	}
 }
