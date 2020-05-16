@@ -6,6 +6,15 @@
 		<author email="kdoerges@googlemail.com">Karsten Doerges</author>
 	</properties>
 	<body>
+		<release version="1.0.5" date="2020-05.16"
+			description="update and fix techn. depth">
+			<action dev="kdoerges" type="update">
+				update dependencies
+			</action>
+			<action dev="kdoerges" type="update">
+				fix pmd issues
+			</action>			
+		</release>
 		<release version="1.0.4" date="2020-02.14"
 			description="improve generic keyword processing">
 			<action dev="kdoerges" type="update">
