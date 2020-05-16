@@ -1,8 +1,6 @@
 package org.vebqa.vebtal;
 
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 import org.apache.commons.configuration2.CombinedConfiguration;
 import org.apache.commons.configuration2.tree.OverrideCombiner;
