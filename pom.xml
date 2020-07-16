@@ -40,6 +40,15 @@
 		</developer>
 	</developers>
 
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>eu.somatik.serviceloader-maven-plugin</groupId>
+				<artifactId>serviceloader-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.openjfx</groupId>
